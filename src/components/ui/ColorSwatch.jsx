@@ -40,9 +40,18 @@ export default function ColorSwatch({
 
   if (size === 'large') {
     return (
-      <div className="rounded-card overflow-hidden border border-border-subtle bg-bg-surface shadow-sm hover:shadow-md transition-shadow">
-        <div 
-          className="h-28 flex items-end p-4" 
+      <div
+        className="rounded-card overflow-hidden transition-shadow duration-200"
+        style={{
+          border: '1px solid var(--border-subtle)',
+          backgroundColor: 'var(--bg-surface)',
+          boxShadow: 'var(--shadow-sm)',
+        }}
+        onMouseEnter={e => e.currentTarget.style.boxShadow = 'var(--shadow-md)'}
+        onMouseLeave={e => e.currentTarget.style.boxShadow = 'var(--shadow-sm)'}
+      >
+        <div
+          className="h-28 flex items-end p-4"
           style={{ backgroundColor: hex }}
         >
           <span className={`font-body text-xs font-semibold ${textOnSwatch}`}>
@@ -50,10 +59,10 @@ export default function ColorSwatch({
           </span>
         </div>
         <div className="p-4">
-          <p className="font-body text-sm font-semibold text-text-primary mb-1">{name}</p>
-          <p className="font-mono text-xs text-accent mb-2">{token}</p>
+          <p className="font-body text-sm font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>{name}</p>
+          <p className="font-mono text-xs mb-2" style={{ color: 'var(--color-accent)' }}>{token}</p>
           {usage && (
-            <p className="font-body text-xs text-text-secondary mb-3 leading-relaxed">
+            <p className="font-body text-xs mb-3 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
               {usage}
             </p>
           )}
@@ -68,14 +77,25 @@ export default function ColorSwatch({
   }
 
   return (
-    <div className="flex items-center gap-3 p-3 rounded-control border border-border-subtle bg-bg-surface hover:shadow-sm transition-shadow">
-      <div 
-        className="w-10 h-10 rounded-control shrink-0 border border-black/10" 
-        style={{ backgroundColor: hex }} 
+    <div
+      className="flex items-center gap-3 p-3 rounded-control transition-shadow duration-200"
+      style={{
+        border: '1px solid var(--border-subtle)',
+        backgroundColor: 'var(--bg-surface)',
+      }}
+      onMouseEnter={e => e.currentTarget.style.boxShadow = 'var(--shadow-sm)'}
+      onMouseLeave={e => e.currentTarget.style.boxShadow = 'none'}
+    >
+      <div
+        className="w-10 h-10 rounded-control shrink-0"
+        style={{
+          backgroundColor: hex,
+          border: '1px solid var(--border-subtle)',
+        }}
       />
       <div className="min-w-0 flex-1">
-        <p className="font-body text-sm font-medium text-text-primary truncate">{name}</p>
-        <p className="font-mono text-xs text-text-secondary">{hex}</p>
+        <p className="font-body text-sm font-medium truncate" style={{ color: 'var(--text-primary)' }}>{name}</p>
+        <p className="font-mono text-xs" style={{ color: 'var(--text-secondary)' }}>{hex}</p>
       </div>
       <span className={`text-[10px] font-bold font-body px-1.5 py-0.5 rounded shrink-0 ${levelWhite.color}`}>
         {levelWhite.label}
